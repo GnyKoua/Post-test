@@ -1,0 +1,23 @@
+<ul class="list-group">
+    <li *ngFor="let post of arrayPosts; let i = index" [ngClass]="{'list-group-item': true,'list-group-item-danger':post.loveIts<0,'list-group-item-success':post.loveIts>0,'list-group-item-warning':post.loveIts==0}">
+        <h1>
+          {{ post.title }}
+        </h1>
+    
+        <h4 style="float:right;margin:-6% 0 0 0;">
+          {{ post.created_at | date: 'short' }}
+        </h4>
+    
+        <p class="text-justify" style="width:70%;margin-bottom:2%;">
+        {{ post.content }}
+        </p>
+    
+        <button (click)="love(i)" class="btn btn-success" style="margin-right:1%;">Love it !</button>
+        <button (click)="dLove(i)" class="btn btn-danger">Don't love it !</button>
+        <button (click)="delPost(i)" class="btn btn-danger" style="float: right;">Supprimer</button>
+    
+        <h4 *ngIf="post.loveIts===0" style="margin:1% 0 1% 42%;color:red;">
+          Aucun avis sur ce post !!!
+        </h4>
+    </li>
+</ul>
